@@ -58,6 +58,17 @@ const developer = {
 🔐 Secure API Integration  
 🚀 Full Stack Architecture  
 
+## 🚗 Car Hub Portal
+
+💐 Custom Car Decoration Booking  
+⚡ Date-Validated Vehicle Booking  
+👤 Personal Customer Dashboard  
+🛡️ Robust Administrative Control Panel  
+🔌 Dual PDO & MySQLi Architecture  
+📱 Fully Responsive Bootstrap UI  
+
+</div>
+
 </div>
 
 ---
