@@ -16,7 +16,7 @@
 
 ```javascript
 const developer = {
-    name: "YOUR_NAME",
+    name: "sonixsynergy",
     role: "Full Stack & AI Developer",
     location: "India 🇮🇳",
     technologies: [
