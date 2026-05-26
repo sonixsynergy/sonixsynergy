@@ -45,33 +45,43 @@ const developer = {
 
 ---
 
-# 🚀 Featured Project
+# 🚀 Featured Projects
 
-<div align="center">
+---
 
 ## 🤖 AI Resume Builder
 
-🔥 AI-powered resume generation platform  
-⚡ ATS-friendly resumes  
-🎨 Multiple templates  
-📄 PDF Export  
-🔐 Secure API Integration  
-🚀 Full Stack Architecture  
+> AI-powered platform that generates professional, ATS-friendly resumes using smart automation.
+
+### ✨ Key Features
+- ⚡ AI-based resume generation
+- 🎨 Multiple professional templates
+- 📄 Instant PDF export
+- 🔐 Secure API integration
+- 🚀 Full-stack architecture
+
+### 🛠 Tech Highlights
+`React` `Node.js` `Express` `MongoDB` `AI APIs`
+
+---
 
 ## 🚗 Car Hub Portal
 
-💐 Custom Car Decoration Booking  
-⚡ Date-Validated Vehicle Booking  
-👤 Personal Customer Dashboard  
-🛡️ Robust Administrative Control Panel  
-🔌 Dual PDO & MySQLi Architecture  
-📱 Fully Responsive Bootstrap UI  
+> Smart vehicle booking & customization system with admin and customer management.
 
-</div>
+### ✨ Key Features
+- 💐 Custom car decoration booking system
+- ⚡ Date-based booking validation
+- 👤 User dashboard for customers
+- 🛡️ Admin control panel
+- 🔌 PDO + MySQLi dual database support
+- 📱 Fully responsive Bootstrap UI
 
-</div>
+### 🛠 Tech Highlights
+`PHP` `MySQL` `PDO` `MySQLi` `Bootstrap` `JavaScript`
 
 ---
+
 
 # 📊 GitHub Stats
 
