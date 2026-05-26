@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚀 Hey, I'm YOUR_NAME
+# 🚀 Hey, I'm sonixsynergy
 
 <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=30&pause=1000&color=00F7FF&center=true&vCenter=true&width=800&lines=Full+Stack+Developer;AI+Automation+Builder;React+%7C+Node.js+%7C+MongoDB;Building+Cool+AI+Projects+🚀" />
 
