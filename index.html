@@ -1,0 +1,2780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaydipsinh Gohil - Software Developer Portfolio & Resume 🚀</title>
+    <meta property="og:description" content="Welcome to my portfolio. View my software projects and download my resume! 👋" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- html2pdf.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        /* ======================================================================
+           1. DESIGN SYSTEM & CSS VARIABLES
+           ====================================================================== */
+        :root {
+            /* Fonts */
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+
+            /* Dark Theme Colors (Default) */
+            --bg-base: #060913;
+            --bg-surface: #0c1122;
+            --bg-card: rgba(18, 26, 47, 0.65);
+            --bg-card-hover: rgba(26, 37, 65, 0.85);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-primary: #06b6d4;
+            /* Neon Cyan */
+            --accent-primary-rgb: 6, 182, 212;
+            --accent-secondary: #6366f1;
+            /* Electric Indigo */
+            --accent-secondary-rgb: 99, 102, 241;
+            --accent-tertiary: #10b981;
+            /* Mint Emerald */
+            --accent-gradient: linear-gradient(135deg, #06b6d4 0%, #6366f1 50%, #a855f7 100%);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(6, 182, 212, 0.3);
+            --shadow-sm: 0 2px 8px -1px rgba(0, 0, 0, 0.5);
+            --shadow-md: 0 8px 30px -4px rgba(0, 0, 0, 0.6);
+            --shadow-glow: 0 0 20px rgba(6, 182, 212, 0.15);
+            --glass-bg: rgba(12, 17, 34, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.06);
+
+            --transition-speed: 0.35s;
+            --transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Light Theme Colors */
+        [data-theme="light"] {
+            --bg-base: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-card: rgba(255, 255, 255, 0.8);
+            --bg-card-hover: rgba(255, 255, 255, 0.95);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --accent-primary: #0891b2;
+            /* Darker Cyan */
+            --accent-primary-rgb: 8, 145, 178;
+            --accent-secondary: #4f46e5;
+            --accent-secondary-rgb: 79, 70, 229;
+            --accent-tertiary: #059669;
+            --accent-gradient: linear-gradient(135deg, #0891b2 0%, #4f46e5 50%, #7c3aed 100%);
+            --border-color: rgba(15, 23, 42, 0.08);
+            --border-hover: rgba(8, 145, 178, 0.4);
+            --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
+            --shadow-md: 0 12px 30px -4px rgba(15, 23, 42, 0.08);
+            --shadow-glow: 0 0 20px rgba(8, 145, 178, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(15, 23, 42, 0.05);
+        }
+
+        /* ======================================================================
+           2. GLOBAL STYLES & RESET
+           ====================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color var(--transition-speed) var(--transition-easing),
+                color var(--transition-speed) var(--transition-easing);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition-speed) var(--transition-easing);
+        }
+
+        /* Ambient background glow spheres */
+        .ambient-glows {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glow-sphere {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            transition: opacity var(--transition-speed) var(--transition-easing);
+        }
+
+        [data-theme="light"] .glow-sphere {
+            opacity: 0.07;
+        }
+
+        .glow-1 {
+            top: -10%;
+            left: 10%;
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
+        }
+
+        .glow-2 {
+            top: 30%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
+        }
+
+        .glow-3 {
+            top: 70%;
+            left: -5%;
+            width: 35vw;
+            height: 35vw;
+            background: radial-gradient(circle, var(--accent-tertiary) 0%, transparent 70%);
+        }
+
+        /* Containers & Sections */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            position: relative;
+            padding: 6.5rem 0 4.5rem 0;
+            z-index: 10;
+        }
+
+        .section-header {
+            margin-bottom: 3.5rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s var(--transition-easing), transform 0.8s var(--transition-easing);
+        }
+
+        .section-header.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        /* Buttons & Badges */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            padding: 0.8rem 1.6rem;
+            border-radius: 0.5rem;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all var(--transition-speed) var(--transition-easing);
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            background: rgba(6, 182, 212, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.8rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: var(--font-mono);
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-secondary);
+            transition: all 0.2s var(--transition-easing);
+        }
+
+        /* Glassmorphism Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform var(--transition-speed) var(--transition-easing),
+                border-color var(--transition-speed) var(--transition-easing),
+                box-shadow var(--transition-speed) var(--transition-easing),
+                background-color var(--transition-speed) var(--transition-easing);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-md), var(--shadow-glow);
+            background: var(--bg-card-hover);
+        }
+
+        /* ======================================================================
+           3. NAVBAR
+           ====================================================================== */
+        .navbar {
+            position: fixed;
+            top: 1.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 3rem);
+            max-width: 1100px;
+            height: 4.25rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.25rem;
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.75rem;
+            transition: top 0.3s ease, background-color var(--transition-speed) var(--transition-easing);
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.35rem;
+            letter-spacing: -0.03em;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.75rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-family: var(--font-display);
+            position: relative;
+            padding: 0.4rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gradient);
+            transition: width 0.3s var(--transition-easing);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--text-primary);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s var(--transition-easing);
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            background: rgba(6, 182, 212, 0.05);
+        }
+
+        .theme-toggle .sun-icon {
+            display: none;
+        }
+
+        [data-theme="light"] .theme-toggle .moon-icon {
+            display: none;
+        }
+
+        [data-theme="light"] .theme-toggle .sun-icon {
+            display: block;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        /* ======================================================================
+           4. HERO SECTION
+           ====================================================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 7rem;
+            z-index: 10;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s var(--transition-easing), transform 0.8s var(--transition-easing);
+        }
+
+        .hero-content.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-pretitle {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            color: var(--accent-primary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-pretitle::before {
+            content: '';
+            display: block;
+            width: 24px;
+            height: 1px;
+            background-color: var(--accent-primary);
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: 3.75rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-title span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-socials {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .social-link {
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: 0.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-speed) var(--transition-easing);
+        }
+
+        .social-link:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            background: rgba(6, 182, 212, 0.05);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Hero Graphic Illustration (Cyber Terminal Box) */
+        .hero-visual {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 1s var(--transition-easing), transform 1s var(--transition-easing);
+            transition-delay: 0.2s;
+        }
+
+        .hero-visual.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .terminal-box {
+            width: 100%;
+            max-width: 420px;
+            aspect-ratio: 1;
+            border-radius: 1.25rem;
+            background: rgba(9, 13, 24, 0.85);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md), 0 0 40px rgba(99, 102, 241, 0.1);
+            backdrop-filter: blur(12px);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .terminal-header {
+            height: 2.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 0.35rem;
+        }
+
+        .terminal-dot {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+        }
+
+        .dot-red {
+            background: #ef4444;
+        }
+
+        .dot-yellow {
+            background: #eab308;
+        }
+
+        .dot-green {
+            background: #22c55e;
+        }
+
+        .terminal-title {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .terminal-body {
+            flex: 1;
+            padding: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            overflow-y: auto;
+        }
+
+        .terminal-line {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .terminal-prompt {
+            color: var(--accent-primary);
+            user-select: none;
+        }
+
+        .terminal-cmd {
+            color: var(--text-primary);
+        }
+
+        .terminal-output {
+            color: var(--text-secondary);
+            padding-left: 1rem;
+        }
+
+        .terminal-output.highlight {
+            color: var(--accent-tertiary);
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 15px;
+            background: var(--accent-primary);
+            margin-left: 2px;
+            animation: pulse-cursor 1s infinite alternate;
+        }
+
+        @keyframes pulse-cursor {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* ======================================================================
+           5. ABOUT & SUMMARY
+           ====================================================================== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
+            align-items: flex-start;
+        }
+
+        .about-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s var(--transition-easing), transform 0.8s var(--transition-easing);
+        }
+
+        .about-content.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about-text {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.25rem;
+        }
+
+        .about-text strong {
+            color: var(--text-primary);
+        }
+
+        .about-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .meta-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+        }
+
+        .meta-label {
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .meta-val {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .about-pillars {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s var(--transition-easing), transform 0.8s var(--transition-easing);
+            transition-delay: 0.15s;
+        }
+
+        .about-pillars.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pillar-card {
+            padding: 1.5rem;
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+        }
+
+        .pillar-icon-box {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.5rem;
+            background: rgba(6, 182, 212, 0.08);
+            border: 1px solid rgba(6, 182, 212, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .pillar-card:hover .pillar-icon-box {
+            background: var(--accent-gradient);
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+        }
+
+        .pillar-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            margin-bottom: 0.35rem;
+        }
+
+        .pillar-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* ======================================================================
+           6. TECHNICAL TOOLKIT (SKILLS)
+           ====================================================================== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.75rem;
+        }
+
+        .skills-card {
+            padding: 1.75rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s var(--transition-easing);
+        }
+
+        .skills-card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skills-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .skills-card-icon {
+            color: var(--accent-primary);
+        }
+
+        .skills-card-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+        }
+
+        .skill-tag {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.35rem;
+            font-family: var(--font-mono);
+            transition: all 0.25s var(--transition-easing);
+        }
+
+        .skill-tag:hover {
+            color: var(--text-primary);
+            background: rgba(6, 182, 212, 0.08);
+            border-color: var(--accent-primary);
+            transform: scale(1.05);
+        }
+
+        /* ======================================================================
+           7. PROJECTS PORTFOLIO
+           ====================================================================== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 380px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s var(--transition-easing);
+        }
+
+        .project-card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-category-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .project-category {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-family: var(--font-mono);
+            color: var(--accent-primary);
+            letter-spacing: 0.05em;
+        }
+
+        .project-version {
+            font-size: 0.7rem;
+            font-weight: 500;
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 0.15rem 0.4rem;
+            border-radius: 0.25rem;
+        }
+
+        .project-title {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .project-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-pill {
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: var(--font-mono);
+            padding: 0.25rem 0.6rem;
+            border-radius: 0.25rem;
+            background: rgba(99, 102, 241, 0.06);
+            border: 1px solid rgba(99, 102, 241, 0.12);
+            color: var(--accent-secondary);
+        }
+
+        /* Specific tag color overrides to look premium */
+        .project-card:nth-child(odd) .tech-pill {
+            background: rgba(6, 182, 212, 0.06);
+            border: 1px solid rgba(6, 182, 212, 0.12);
+            color: var(--accent-primary);
+        }
+
+        .project-link-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            opacity: 0.8;
+            transition: all 0.2s ease;
+        }
+
+        .project-link:hover {
+            color: var(--accent-primary);
+            opacity: 1;
+        }
+
+        /* ======================================================================
+           8. TIMELINE (EXPERIENCE & EDUCATION)
+           ====================================================================== */
+        .timeline-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 2rem;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(to bottom,
+                    var(--accent-primary) 0%,
+                    var(--accent-secondary) 50%,
+                    var(--border-color) 100%);
+            z-index: 1;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 4.5rem;
+            margin-bottom: 3.5rem;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s var(--transition-easing);
+        }
+
+        .timeline-item.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Timeline Dot */
+        .timeline-dot {
+            position: absolute;
+            left: 1.2rem;
+            top: 0.5rem;
+            width: 1.6rem;
+            height: 1.6rem;
+            border-radius: 50%;
+            background: var(--bg-base);
+            border: 3px solid var(--accent-primary);
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            border-color: var(--accent-secondary);
+        }
+
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.2);
+            box-shadow: 0 0 12px var(--accent-primary);
+            background: var(--accent-primary);
+        }
+
+        .timeline-item:nth-child(even):hover .timeline-dot {
+            box-shadow: 0 0 12px var(--accent-secondary);
+            background: var(--accent-secondary);
+        }
+
+        /* Card Content */
+        .timeline-card {
+            padding: 1.75rem;
+        }
+
+        .timeline-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.75rem;
+            gap: 0.5rem;
+        }
+
+        .timeline-role {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .timeline-duration {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .timeline-item:nth-child(even) .timeline-duration {
+            color: var(--accent-secondary);
+        }
+
+        .timeline-location-row {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 1.25rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: var(--font-mono);
+        }
+
+        .timeline-company,
+        .timeline-location {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .timeline-body {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .timeline-bullets {
+            margin-top: 0.75rem;
+            padding-left: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .timeline-bullets li {
+            position: relative;
+            list-style: none;
+        }
+
+        .timeline-bullets li::before {
+            content: "•";
+            color: var(--accent-primary);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* ======================================================================
+           9. ADDITIONAL INFORMATIONAL SECTORS
+           ====================================================================== */
+        .additional-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.75rem;
+        }
+
+        .add-card {
+            padding: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s var(--transition-easing);
+        }
+
+        .add-card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .add-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+        }
+
+        .add-card:nth-child(even) .add-header {
+            color: var(--accent-secondary);
+        }
+
+        .add-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .add-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* ======================================================================
+           10. FOOTER & CTA CONTACT CARD
+           ====================================================================== */
+        .footer {
+            padding: 5rem 0 3rem 0;
+            background: rgba(6, 9, 19, 0.85);
+            border-top: 1px solid var(--border-color);
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .footer-cta-card {
+            padding: 2.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .cta-title {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .cta-contacts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .contact-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            padding: 1rem 1.25rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .contact-box:hover {
+            border-color: var(--accent-primary);
+            background: rgba(6, 182, 212, 0.04);
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .contact-icon {
+            color: var(--accent-primary);
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-label {
+            font-size: 0.7rem;
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .contact-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .copy-icon {
+            color: var(--text-muted);
+            opacity: 0;
+            transition: opacity 0.2s ease, color 0.2s ease;
+        }
+
+        .contact-box:hover .copy-icon {
+            opacity: 1;
+        }
+
+        .contact-box:active .copy-icon {
+            color: var(--accent-tertiary);
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.75rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .footer-summary {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-social-row {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-social-row .social-link svg {
+            width: 1.25rem !important;
+            height: 1.25rem !important;
+            display: block;
+        }
+
+        .footer-social-row .social-link:hover {
+            transform: scale(1.15);
+            transition: transform 0.2s ease;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--accent-tertiary);
+            color: var(--text-primary);
+            padding: 0.85rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-md);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ======================================================================
+           11. RESPONSIVE SCALING (MEDIA QUERIES)
+           ====================================================================== */
+        @media (max-width: 1024px) {
+            html {
+                font-size: 15px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1.1fr 0.9fr;
+                gap: 2rem;
+            }
+
+            .about-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-title {
+                font-size: 3.25rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 1rem;
+                height: 3.75rem;
+            }
+
+            .nav-links {
+                display: none;
+                /* Mobile menu hidden by default */
+                position: absolute;
+                top: 4.5rem;
+                left: 0;
+                width: 100%;
+                background: var(--bg-surface);
+                border: 1px solid var(--border-color);
+                border-radius: 1rem;
+                box-shadow: var(--shadow-md);
+                padding: 1.5rem;
+                flex-direction: column;
+                gap: 1.25rem;
+                align-items: flex-start;
+                z-index: 999;
+            }
+
+            .nav-links.mobile-open {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .hero-pretitle {
+                justify-content: center;
+            }
+
+            .hero-pretitle::before {
+                display: none;
+            }
+
+            .hero-location {
+                justify-content: center;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .about-meta {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .timeline-container::before {
+                left: 1rem;
+            }
+
+            .timeline-item {
+                padding-left: 2.75rem;
+            }
+
+            .timeline-dot {
+                left: 0.2rem;
+            }
+
+            .timeline-meta {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            html {
+                font-size: 14px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-cta .btn {
+                width: 100%;
+            }
+        }
+
+        /* ======================================================================
+           12. SPECIALIZED PRINT TEMPLATE & STYLES (A4 DUAL LAYOUT)
+           ====================================================================== */
+        /* Hidden from screen display */
+        .pdf-only-container {
+            display: none;
+        }
+
+        /* Style definitions strictly formatted for outputting in PDF generation */
+        .pdf-print-root {
+            width: 800px;
+            min-height: 1120px;
+            /* Precise scale matching A4 */
+            padding: 40px;
+            background: #ffffff;
+            color: #1e293b;
+            font-family: 'Inter', sans-serif;
+            font-size: 12.5px;
+            line-height: 1.5;
+            box-sizing: border-box;
+        }
+
+        .pdf-header {
+            border-bottom: 2px solid #0f172a;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .pdf-header-left h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.1;
+            margin-bottom: 4px;
+        }
+
+        .pdf-header-left p {
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #4f46e5;
+            letter-spacing: 0.02em;
+        }
+
+        .pdf-header-right {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            font-size: 11px;
+            color: #334155;
+            text-align: right;
+            align-items: flex-end;
+        }
+
+        .pdf-contact-item {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .pdf-contact-label {
+            font-weight: 700;
+            color: #4f46e5;
+            text-transform: uppercase;
+            font-size: 8.5px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .pdf-contact-value {
+            color: #1e293b;
+            font-weight: 500;
+        }
+
+        .pdf-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .pdf-section {
+            margin-bottom: 22px;
+            page-break-inside: avoid;
+        }
+
+        .pdf-section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #0f172a;
+            border-bottom: 1.5px solid #e2e8f0;
+            padding-bottom: 4px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .pdf-summary-text {
+            color: #334155;
+            text-align: justify;
+        }
+
+        /* PDF Timeline */
+        .pdf-timeline-item {
+            margin-bottom: 16px;
+            page-break-inside: avoid;
+        }
+
+        .pdf-timeline-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 12.5px;
+            color: #0f172a;
+            margin-bottom: 2px;
+        }
+
+        .pdf-timeline-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #4f46e5;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .pdf-timeline-body {
+            color: #475569;
+            font-size: 11.5px;
+        }
+
+        .pdf-timeline-bullets {
+            margin-top: 4px;
+            padding-left: 14px;
+        }
+
+        .pdf-timeline-bullets li {
+            margin-bottom: 2px;
+            color: #475569;
+        }
+
+        /* PDF Project Card */
+        .pdf-project-item {
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+
+        .pdf-project-title {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 12.5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .pdf-project-link {
+            font-size: 10px;
+            font-family: 'Fira Code', monospace;
+            color: #4f46e5;
+            font-weight: 500;
+        }
+
+        .pdf-project-meta {
+            font-size: 10.5px;
+            color: #64748b;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .pdf-project-desc {
+            color: #475569;
+            font-size: 11.5px;
+            text-align: justify;
+        }
+
+        /* PDF Skill Panel */
+        .pdf-skill-box {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .pdf-skill-category {
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #0f172a;
+            margin-bottom: 4px;
+            letter-spacing: 0.02em;
+        }
+
+        .pdf-skill-tags {
+            font-size: 11px;
+            color: #475569;
+            line-height: 1.4;
+        }
+
+        .pdf-side-block {
+            margin-bottom: 18px;
+            page-break-inside: avoid;
+        }
+
+        .pdf-side-item {
+            margin-bottom: 8px;
+        }
+
+        .pdf-side-label {
+            font-weight: 700;
+            font-size: 11px;
+            color: #0f172a;
+            margin-bottom: 2px;
+        }
+
+        .pdf-side-desc {
+            font-size: 11px;
+            color: #475569;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        /* ======================================================================
+           12a. MOBILE-ONLY PRINT OVERRIDES
+           ====================================================================== */
+        @media print and (max-width: 768px) {
+            @page {
+                size: A4 portrait;
+                margin: 15mm 12mm !important;
+            }
+
+            html,
+            body {
+                width: 1024px !important;
+                /* Forces the mobile browser to render the PDF in desktop scaling */
+                zoom: 0.75;
+                /* Adjusts scale perfectly to fit A4 */
+            }
+
+            .resume-container,
+            #resume,
+            .portfolio-main {
+                margin-top: 0 !important;
+                padding-top: 0 !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Ambient glowing shapes -->
+    <div class="ambient-glows">
+        <div class="glow-sphere glow-1"></div>
+        <div class="glow-sphere glow-2"></div>
+        <div class="glow-sphere glow-3"></div>
+    </div>
+
+    <!-- ======================================================================
+       1. NAVIGATION HEADER
+       ====================================================================== -->
+    <nav class="navbar" id="navbar">
+        <a href="#hero" class="nav-logo">
+            <i data-lucide="terminal" style="width: 1.5rem; height: 1.5rem;"></i>
+            Jaydip.dev
+        </a>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#hero" class="nav-link active">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#experience" class="nav-link">Education</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Light/Dark Theme">
+                <i data-lucide="moon" class="moon-icon" style="width: 1.25rem; height: 1.25rem;"></i>
+                <i data-lucide="sun" class="sun-icon" style="width: 1.25rem; height: 1.25rem;"></i>
+            </button>
+            <button class="btn btn-outline" id="nav-pdf-btn"
+                style="padding: 0.5rem 1rem; font-size: 0.85rem; height: 2.5rem; display: flex;">
+                <i data-lucide="download" style="width: 1rem; height: 1rem;"></i>
+                Resume PDF
+            </button>
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Mobile Menu">
+                <i data-lucide="menu" style="width: 1.5rem; height: 1.5rem;"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ======================================================================
+       2. HERO SECTION
+       ====================================================================== -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content active" id="hero-content">
+                    <div class="hero-pretitle">Welcome to my portfolio</div>
+                    <h1 class="hero-title">Hi, I'm <br><span>Jaydipsinh Gohil</span></h1>
+                    <div class="hero-subtitle">Software Developer | AI & Web Technologies | IT Support</div>
+                    <div class="hero-location">
+                        <i data-lucide="map-pin"
+                            style="width: 1.15rem; height: 1.15rem; color: var(--accent-primary);"></i>
+                        Vadu, Mehsana, Gujarat, India - 382705
+                    </div>
+                    <div class="hero-cta">
+                        <button class="btn btn-primary" id="download-pdf-btn">
+                            <i data-lucide="download" style="width: 1.15rem; height: 1.15rem;"></i>
+                            Download PDF Resume
+                        </button>
+                        <a href="#about" class="btn btn-outline">
+                            About Me
+                            <i data-lucide="arrow-right" style="width: 1.15rem; height: 1.15rem;"></i>
+                        </a>
+                    </div>
+                    <div class="hero-socials">
+                        <a href="mailto:gohiljaydipsinh108@gmail.com" class="social-link" title="Email Me">
+                            <i data-lucide="mail" style="width: 1.25rem; height: 1.25rem;"></i>
+                        </a>
+                        <a href="https://github.com/jaydipsinh-gohil" target="_blank" rel="noopener noreferrer"
+                            class="social-link" title="GitHub">
+                            <i data-lucide="github" style="width: 1.25rem; height: 1.25rem;"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/jaydipsinh-gohil" target="_blank" rel="noopener noreferrer"
+                            class="social-link" title="LinkedIn">
+                            <i data-lucide="linkedin" style="width: 1.25rem; height: 1.25rem;"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Interactive Terminal Box -->
+                <div class="hero-visual active" id="hero-visual">
+                    <div class="terminal-box">
+                        <div class="terminal-header">
+                            <div class="terminal-dots">
+                                <div class="terminal-dot dot-red"></div>
+                                <div class="terminal-dot dot-yellow"></div>
+                                <div class="terminal-dot dot-green"></div>
+                            </div>
+                            <div class="terminal-title">jaydip@portfolio:~</div>
+                            <div></div>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">$</span>
+                                <span class="terminal-cmd">cat profile.txt</span>
+                            </div>
+                            <div class="terminal-output">
+                                Name: Jaydipsinh Gohil<br>
+                                Status: MSc IT Pursuing (Sem 1 & 2 Completed)<br>
+                                Focus: Full-Stack Web, Python, Relational DBs & AI
+                            </div>
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">$</span>
+                                <span class="terminal-cmd">python -c "print('Building intelligent systems!')"</span>
+                            </div>
+                            <div class="terminal-output highlight">
+                                Building intelligent systems!
+                            </div>
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">$</span>
+                                <span class="terminal-cmd">python main.py<span class="typing-cursor"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+       3. ABOUT SECTION
+       ====================================================================== -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Introduction</span>
+                <h2 class="section-title">My <span>Background</span></h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-content" id="about-content">
+                    <div class="about-text">
+                        <p>Motivated and technically proficient **Software Developer** with a strong academic foundation in Computer Applications (**BCA First Class Distinction, 8.19/10 CGPA**) and currently pursuing a **Master of Science in Information Technology (MSc IT)**.</p>
+                        <p>Demonstrates hands-on expertise in full-stack web development, Python automation, AI-assisted development, and relational database management. Proven ability to build scalable, ATS-optimised applications and data-driven web platforms.</p>
+                        <p>Combines a solid grasp of core computer science fundamentals — **Data Structures, DBMS, and Computer Networks** — with modern skills in prompt engineering and API integration. Passionate about intelligent systems and eager to contribute to software development, IT support, and government technical outsourcing environments.</p>
+                    </div>
+                    <div class="about-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Current Role & Education</div>
+                            <div class="meta-val">MSc IT Student & Software Developer</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Academic Standing</div>
+                            <div class="meta-val">BCA CGPA 8.19 / 10.00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-pillars" id="about-pillars">
+                    <div class="pillar-card card">
+                        <div class="pillar-icon-box">
+                            <i data-lucide="code-2"></i>
+                        </div>
+                        <div>
+                            <h3 class="pillar-title">Full-Stack Development</h3>
+                            <p class="pillar-desc">Building secure, lightweight, and scalable web solutions using modern programming languages, relational databases, and clean frontend architectures.</p>
+                        </div>
+                    </div>
+
+                    <div class="pillar-card card">
+                        <div class="pillar-icon-box">
+                            <i data-lucide="bot"></i>
+                        </div>
+                        <div>
+                            <h3 class="pillar-title">AI-Assisted Development</h3>
+                            <p class="pillar-desc">Leveraging prompt engineering, API integrations, and AI orchestration pipelines to design intelligent, high-efficiency system workflows.</p>
+                        </div>
+                    </div>
+
+                    <div class="pillar-card card">
+                        <div class="pillar-icon-box">
+                            <i data-lucide="database"></i>
+                        </div>
+                        <div>
+                            <h3 class="pillar-title">Database Design & Management</h3>
+                            <p class="pillar-desc">Designing robust database schemas, implementing MVC logic, and writing optimized MySQL and SQL queries to ensure data integrity and speed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+       4. TECHNICAL TOOLKIT (SKILLS)
+       ====================================================================== -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Capabilities</span>
+                <h2 class="section-title">Technical <span>Toolkit</span></h2>
+            </div>
+            <div class="skills-grid">
+                <!-- Skills Panel 1: Languages -->
+                <div class="skills-card card" id="skills-card-1">
+                    <div class="skills-card-header">
+                        <i data-lucide="code" class="skills-card-icon"></i>
+                        <h3 class="skills-card-title">Programming Languages</h3>
+                    </div>
+                    <div class="skills-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">C# / .NET</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">HTML5 & CSS3</span>
+                    </div>
+                </div>
+
+                <!-- Skills Panel 2: Databases & Web -->
+                <div class="skills-card card" id="skills-card-2">
+                    <div class="skills-card-header">
+                        <i data-lucide="database" class="skills-card-icon"></i>
+                        <h3 class="skills-card-title">Databases & Web</h3>
+                    </div>
+                    <div class="skills-list">
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Relational Database Design</span>
+                        <span class="skill-tag">CRUD Operations</span>
+                        <span class="skill-tag">MVC Architecture</span>
+                    </div>
+                </div>
+
+                <!-- Skills Panel 3: Core CS Fundamentals -->
+                <div class="skills-card card" id="skills-card-3">
+                    <div class="skills-card-header">
+                        <i data-lucide="layers" class="skills-card-icon"></i>
+                        <h3 class="skills-card-title">Core CS Fundamentals</h3>
+                    </div>
+                    <div class="skills-list">
+                        <span class="skill-tag">Data Structures</span>
+                        <span class="skill-tag">DBMS</span>
+                        <span class="skill-tag">Computer Networks</span>
+                        <span class="skill-tag">Software Engineering</span>
+                        <span class="skill-tag">Debugging & Testing</span>
+                        <span class="skill-tag">System Design</span>
+                    </div>
+                </div>
+
+                <!-- Skills Panel 4: Modern & AI Automation -->
+                <div class="skills-card card" id="skills-card-4">
+                    <div class="skills-card-header">
+                        <i data-lucide="cpu" class="skills-card-icon"></i>
+                        <h3 class="skills-card-title">Modern AI & Automation</h3>
+                    </div>
+                    <div class="skills-list">
+                        <span class="skill-tag">AI Automation</span>
+                        <span class="skill-tag">Prompt Engineering</span>
+                        <span class="skill-tag">API Integration</span>
+                        <span class="skill-tag">AI-Assisted Development</span>
+                        <span class="skill-tag">Workflow Orchestration</span>
+                        <span class="skill-tag">Content Processing</span>
+                    </div>
+                </div>
+
+                <!-- Skills Panel 5: Core Competencies -->
+                <div class="skills-card card" id="skills-card-5" style="grid-column: span 2;">
+                    <div class="skills-card-header">
+                        <i data-lucide="award" class="skills-card-icon"></i>
+                        <h3 class="skills-card-title">Core Professional Competencies</h3>
+                    </div>
+                    <div class="skills-list">
+                        <span class="skill-tag">Full-Stack Web Development</span>
+                        <span class="skill-tag">Problem Solving</span>
+                        <span class="skill-tag">Technical Documentation</span>
+                        <span class="skill-tag">Agile Learning Mindset</span>
+                        <span class="skill-tag">IT Support & Tech Troubleshooting</span>
+                        <span class="skill-tag">Government Technical Outsourcing Readiness</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+       5. PORTFOLIO PROJECTS
+       ====================================================================== -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">My Work</span>
+                <h2 class="section-title">Key <span>Projects</span></h2>
+            </div>
+            <div class="projects-grid" style="grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));">
+                <!-- Project 1 -->
+                <div class="project-card card" id="project-1" style="min-height: auto;">
+                    <div class="project-category-row">
+                        <span class="project-category">AI & Workflow Automation</span>
+                        <span class="project-version">v1.0 Production</span>
+                    </div>
+                    <h3 class="project-title">AI Resume Builder Automation</h3>
+                    <p class="project-desc">Engineered an AI-powered resume generation platform leveraging Python automation and intelligent content processing pipelines. The system dynamically collects structured user data and produces ATS-optimised, professionally formatted resumes through automated workflow orchestration.</p>
+                    <ul style="padding-left: 1.2rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem; color: var(--text-secondary);">
+                        <li>Designed and implemented an end-to-end automated resume generation workflow, eliminating manual formatting effort.</li>
+                        <li>Integrated AI-based professional content enhancement for dynamic, role-specific language optimisation.</li>
+                        <li>Developed robust data processing modules for intelligent user input validation and structured output generation.</li>
+                        <li>Engineered ATS-friendly content formatting logic ensuring maximum keyword compatibility with applicant tracking systems.</li>
+                        <li>Applied prompt engineering techniques to produce contextually accurate, professionally styled resume content.</li>
+                    </ul>
+                    <div class="project-tech" style="margin-bottom: 0;">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">AI Automation</span>
+                        <span class="tech-pill">Prompt Engineering</span>
+                        <span class="tech-pill">Data Processing</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card card" id="project-2" style="min-height: auto;">
+                    <div class="project-category-row">
+                        <span class="project-category">Full-Stack Application</span>
+                        <span class="project-version">v1.0 Release</span>
+                    </div>
+                    <h3 class="project-title">Car Hub Management System</h3>
+                    <p class="project-desc">Designed and developed a full-featured web-based vehicle management platform integrating a relational database backend with a responsive frontend interface, demonstrating end-to-end software development competency.</p>
+                    <ul style="padding-left: 1.2rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem; color: var(--text-secondary);">
+                        <li>Architected a responsive frontend UI using HTML5 and CSS3 ensuring seamless cross-device usability.</li>
+                        <li>Implemented complete CRUD operations for structured vehicle data management using MySQL.</li>
+                        <li>Established robust MySQL database connectivity with optimised query design for efficient data retrieval.</li>
+                        <li>Developed a structured Java backend adhering to MVC design principles for maintainability and scalability.</li>
+                        <li>Applied core Data Structures and DBMS concepts to optimise application performance and data integrity.</li>
+                    </ul>
+                    <div class="project-tech" style="margin-bottom: 0;">
+                        <span class="tech-pill">HTML5 & CSS3</span>
+                        <span class="tech-pill">Java</span>
+                        <span class="tech-pill">MySQL</span>
+                        <span class="tech-pill">MVC Principles</span>
+                        <span class="tech-pill">DBMS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+       6. TIMELINE (EDUCATION)
+       ====================================================================== -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Academic Journey</span>
+                <h2 class="section-title">Education & <span>Milestones</span></h2>
+            </div>
+            <div class="timeline-container">
+                <!-- Timeline Item 1: MSc IT -->
+                <div class="timeline-item" id="timeline-1">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card card">
+                        <div class="timeline-meta">
+                            <h3 class="timeline-role">Master of Science - Information Technology (MSc IT)</h3>
+                            <span class="timeline-duration">2025 - Present</span>
+                        </div>
+                        <div class="timeline-location-row">
+                            <div class="timeline-company">
+                                <i data-lucide="graduation-cap" style="width: 1rem; height: 1rem;"></i> Ongoing (Postgraduate)
+                            </div>
+                            <div class="timeline-location">
+                                <i data-lucide="map-pin" style="width: 1rem; height: 1rem;"></i> Gujarat, India
+                            </div>
+                        </div>
+                        <div class="timeline-body">
+                            <p><strong>Status:</strong> Semester 1 & Semester 2 Successfully Completed — Ongoing.</p>
+                            <p style="margin-top: 0.5rem;">Deepening knowledge in advanced computing architectures, database management systems, intelligent systems, and scalable software pipelines.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2: BCA -->
+                <div class="timeline-item" id="timeline-2">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card card">
+                        <div class="timeline-meta">
+                            <h3 class="timeline-role">Bachelor of Computer Applications (BCA)</h3>
+                            <span class="timeline-duration">2023 – 2025</span>
+                        </div>
+                        <div class="timeline-location-row">
+                            <div class="timeline-company">
+                                <i data-lucide="graduation-cap" style="width: 1rem; height: 1rem;"></i> Hemchandracharya North Gujarat University (HNGU)
+                            </div>
+                            <div class="timeline-location">
+                                <i data-lucide="map-pin" style="width: 1rem; height: 1rem;"></i> Patan, Gujarat, India
+                            </div>
+                        </div>
+                        <div class="timeline-body">
+                            <p><strong>Grade:</strong> CGPA 8.19 / 10.00 — First Class with Distinction (Completed April 2026).</p>
+                            <p style="margin-top: 0.5rem;">Acquired fundamental software engineering competency in computer programming (Java, C++, PHP, Python), relational database structures, computer networks, and object-oriented application design.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3: HSC -->
+                <div class="timeline-item" id="timeline-3">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card card">
+                        <div class="timeline-meta">
+                            <h3 class="timeline-role">Higher Secondary Certificate (HSC) – 12th Standard</h3>
+                            <span class="timeline-duration">Completed</span>
+                        </div>
+                        <div class="timeline-location-row">
+                            <div class="timeline-company">
+                                <i data-lucide="book-open" style="width: 1rem; height: 1rem;"></i> GSEB (Gujarat Board)
+                            </div>
+                            <div class="timeline-location">
+                                <i data-lucide="map-pin" style="width: 1rem; height: 1rem;"></i> Gujarat, India
+                            </div>
+                        </div>
+                        <div class="timeline-body">
+                            <p><strong>Score:</strong> 77.29% — Science Stream.</p>
+                            <p style="margin-top: 0.5rem;">Built a rigorous analytical foundation in mathematics, physics, and computer science concepts.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 4: SSC -->
+                <div class="timeline-item" id="timeline-4">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card card">
+                        <div class="timeline-meta">
+                            <h3 class="timeline-role">Secondary School Certificate (SSC) – 10th Standard</h3>
+                            <span class="timeline-duration">Completed</span>
+                        </div>
+                        <div class="timeline-location-row">
+                            <div class="timeline-company">
+                                <i data-lucide="book-open" style="width: 1rem; height: 1rem;"></i> GSEB (Gujarat Board)
+                            </div>
+                            <div class="timeline-location">
+                                <i data-lucide="map-pin" style="width: 1rem; height: 1rem;"></i> Gujarat, India
+                            </div>
+                        </div>
+                        <div class="timeline-body">
+                            <p><strong>Score:</strong> 69.99%.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+       7. ADDITIONAL DETAILS & ROLES
+       ====================================================================== -->
+    <section class="additional-info" id="additional-info" style="padding-top: 1rem;">
+        <div class="container">
+            <div class="section-header" style="margin-bottom: 2.5rem;">
+                <span class="section-subtitle">Career Focus</span>
+                <h2 class="section-title">Target Roles & <span>Outlooks</span></h2>
+            </div>
+            <div class="additional-grid">
+                <!-- Additional 1 -->
+                <div class="add-card card" id="add-card-1">
+                    <div class="add-header">
+                        <i data-lucide="cpu" style="width: 1.25rem; height: 1.25rem;"></i>
+                        <h3 class="add-title">AI & Python Developer</h3>
+                    </div>
+                    <p class="add-desc">Targeting roles in Junior Python development, AI developer pipelines, and intelligent API orchestrations to leverage prompt engineering workflows.</p>
+                </div>
+
+                <!-- Additional 2 -->
+                <div class="add-card card" id="add-card-2">
+                    <div class="add-header">
+                        <i data-lucide="code" style="width: 1.25rem; height: 1.25rem;"></i>
+                        <h3 class="add-title">Web Developer</h3>
+                    </div>
+                    <p class="add-desc">Building responsive, database-driven web applications, utilizing modern programming paradigms (Java, PHP, JavaScript) and MVC principles.</p>
+                </div>
+
+                <!-- Additional 3 -->
+                <div class="add-header-wrapper" style="display: contents;">
+                    <div class="add-card card" id="add-card-3">
+                        <div class="add-header">
+                            <i data-lucide="wrench" style="width: 1.25rem; height: 1.25rem;"></i>
+                            <h3 class="add-title">IT Support Specialist</h3>
+                        </div>
+                        <p class="add-desc">Eager to contribute technical diagnostics, database administrations, and network maintenance solutions inside corporate environments.</p>
+                    </div>
+                </div>
+
+                <!-- Additional 4 -->
+                <div class="add-card card" id="add-card-4">
+                    <div class="add-header">
+                        <i data-lucide="graduation-cap" style="width: 1.25rem; height: 1.25rem;"></i>
+                        <h3 class="add-title">Outsourcing & Support</h3>
+                        
+                    </div>
+                    <p class="add-desc">Fully prepared for entry-level engineering roles, government technical outsourcing, and large-scale, process-driven tech deployments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================================
+       8. FOOTER WITH CTA CONTACT CARD
+       ====================================================================== -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- CTA Contact Card -->
+                <div class="footer-cta-card card">
+                    <h3 class="cta-title">Let's build something epic!</h3>
+                    <p class="cta-desc">I am actively open to junior software development, web engineering, IT support, and government technical contracts. Feel free to copy my contacts directly.</p>
+                    <div class="cta-contacts">
+                        <!-- Contact Email -->
+                        <div class="contact-box"
+                            onclick="copyText('gohiljaydipsinh108@gmail.com', 'Email Address copied to clipboard!')">
+                            <div class="contact-info">
+                                <i data-lucide="mail" class="contact-icon" style="width: 1.5rem; height: 1.5rem;"></i>
+                                <div class="contact-details">
+                                    <span class="contact-label">Email Me</span>
+                                    <span class="contact-value" style="font-size: 0.85rem;">gohiljaydipsinh108@gmail.com</span>
+                                </div>
+                            </div>
+                            <i data-lucide="copy" class="copy-icon" style="width: 1.15rem; height: 1.15rem;"></i>
+                        </div>
+
+                        <!-- Contact Phone -->
+                        <div class="contact-box"
+                            onclick="copyText('+917285819796', 'Phone Number copied to clipboard!')">
+                            <div class="contact-info">
+                                <i data-lucide="phone" class="contact-icon" style="width: 1.5rem; height: 1.5rem;"></i>
+                                <div class="contact-details">
+                                    <span class="contact-label">Call / WhatsApp</span>
+                                    <span class="contact-value">+91 72858 19796</span>
+                                </div>
+                            </div>
+                            <i data-lucide="copy" class="copy-icon" style="width: 1.15rem; height: 1.15rem;"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Brand & Details -->
+                <div class="footer-brand">
+                    <div>
+                        <div class="footer-logo">Jaydipsinh Gohil</div>
+                        <p class="footer-summary">Technically proficient Software Developer pursuing an MSc IT with strong foundations in database systems, Python automation, and web application architectures.</p>
+                    </div>
+                    <div>
+                        <div class="footer-social-row"
+                            style="display: flex !important; gap: 1.5rem !important; align-items: center !important;">
+                            <a href="mailto:gohiljaydipsinh108@gmail.com" class="social-link" title="Email Me" style="display: inline-block !important;">
+                                <i data-lucide="mail" style="width: 1.25rem; height: 1.25rem;"></i>
+                            </a>
+
+                            <a href="https://github.com/jaydipsinh-gohil" target="_blank" rel="noopener noreferrer"
+                                class="social-link" title="GitHub" style="display: inline-block !important;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    style="width: 24px !important; height: 24px !important; display: block !important;">
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                    </path>
+                                </svg>
+                            </a>
+
+                            <a href="https://www.linkedin.com/in/jaydipsinh-gohil" target="_blank" rel="noopener noreferrer"
+                                class="social-link" title="LinkedIn" style="display: inline-block !important;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="#0077B5" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    style="width: 24px !important; height: 24px !important; display: block !important;">
+                                    <path
+                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                    </path>
+                                    <rect x="2" y="9" width="4" height="12"></rect>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem;">
+                <span style="font-size: 0.8rem; opacity: 0.8; max-width: 800px; line-height: 1.4;">
+                    <strong>Declaration:</strong> I hereby declare that all the information furnished above is true and accurate to the best of my knowledge and belief.
+                </span>
+                <span style="font-family: var(--font-mono); font-size: 0.8rem; margin-top: 0.5rem;">
+                    Designed & Built with ❤️ for Jaydipsinh Gohil • Place: Vadu, Gujarat
+                </span>
+                <span style="font-size: 0.75rem;">© 2026. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast system -->
+    <div class="toast" id="toast">
+        <i data-lucide="check-circle" style="width: 1.25rem; height: 1.25rem; color: var(--accent-tertiary);"></i>
+        <span id="toast-msg">Copied!</span>
+    </div>
+
+    <!-- ======================================================================
+       13. DYNAMIC A4 PRINT TEMPLATE FOR PDF DOWNLOAD (2-PAGE OPTIMISED LAYOUT)
+       ====================================================================== -->
+    <div class="pdf-only-container">
+        <div id="resume-pdf-template" class="pdf-print-root">
+            <!-- ==================== PDF PAGE 1 ==================== -->
+            <div class="pdf-header">
+                <div class="pdf-header-left">
+                    <h1>JAYDIPSINH GOHIL</h1>
+                    <p>Software Developer | AI & Web Technologies | IT Support</p>
+                </div>
+                <div class="pdf-header-right">
+                    <div class="pdf-contact-item">
+                        <span class="pdf-contact-label">Email</span>
+                        <span class="pdf-contact-value">gohiljaydipsinh108@gmail.com</span>
+                    </div>
+                    <div class="pdf-contact-item">
+                        <span class="pdf-contact-label">Phone</span>
+                        <span class="pdf-contact-value">+91-7285819796</span>
+                    </div>
+                    <div class="pdf-contact-item">
+                        <span class="pdf-contact-label">GitHub</span>
+                        <span class="pdf-contact-value">github.com/jaydipsinh-gohil</span>
+                    </div>
+                    <div class="pdf-contact-item">
+                        <span class="pdf-contact-label">LinkedIn</span>
+                        <span class="pdf-contact-value">linkedin.com/in/jaydipsinh-gohil</span>
+                    </div>
+                    <div class="pdf-contact-item">
+                        <span class="pdf-contact-label">Location</span>
+                        <span class="pdf-contact-value">Vadu, Mehsana, Gujarat – 382705</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pdf-grid">
+                <!-- PDF Left Column -->
+                <div>
+                    <!-- Profile Summary -->
+                    <div class="pdf-section">
+                        <h2 class="pdf-section-title">
+                            Professional Summary
+                        </h2>
+                        <p class="pdf-summary-text" style="font-size: 11px; text-align: justify; line-height: 1.4;">
+                            Motivated and technically proficient Software Developer with a strong academic foundation in Computer Applications (CGPA 8.19/10, First Class Distinction) and currently pursuing a Master of Science in Information Technology (MSc IT). Demonstrates hands-on expertise in full-stack web development, Python automation, AI-assisted development, and relational database management. Proven ability to build scalable, ATS-optimised applications and data-driven web platforms. Combines a solid grasp of core computer science fundamentals — Data Structures, DBMS, and Computer Networks — with modern skills in prompt engineering and API integration. Passionate about intelligent systems and eager to contribute to software development, IT support, and government technical outsourcing environments.
+                        </p>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="pdf-section">
+                        <h2 class="pdf-section-title">
+                            Education Milestones
+                        </h2>
+                        
+                        <!-- MSc IT -->
+                        <div class="pdf-timeline-item" style="margin-bottom: 12px;">
+                            <div class="pdf-timeline-header">
+                                <span style="font-size: 11.5px; font-weight: 700;">Master of Science - IT (MSc IT)</span>
+                                <span style="font-size: 10px; font-family: 'Fira Code', monospace; color: #4f46e5;">2025 – Present</span>
+                            </div>
+                            <div class="pdf-timeline-meta" style="margin-bottom: 2px;">
+                                <span style="font-size: 10px; color: #475569;">Ongoing Postgraduate Program</span>
+                                <span style="font-size: 10px; color: #475569;">Gujarat, India</span>
+                            </div>
+                            <div class="pdf-timeline-body" style="font-size: 10.5px; color: #334155;">
+                                Successfully completed 2 semesters (Sem 1 & Sem 2). Focuses on advanced database management, computer networking, intelligent software engineering pipelines, and modern computing tools.
+                            </div>
+                        </div>
+
+                        <!-- BCA -->
+                        <div class="pdf-timeline-item" style="margin-bottom: 12px;">
+                            <div class="pdf-timeline-header">
+                                <span style="font-size: 11.5px; font-weight: 700;">Bachelor of Computer Applications (BCA)</span>
+                                <span style="font-size: 10px; font-family: 'Fira Code', monospace; color: #4f46e5;">2023 – 2025</span>
+                            </div>
+                            <div class="pdf-timeline-meta" style="margin-bottom: 2px;">
+                                <span style="font-size: 10px; color: #475569;">Hemchandracharya North Gujarat University (HNGU)</span>
+                                <span style="font-size: 10px; color: #475569;">Patan, Gujarat</span>
+                            </div>
+                            <div class="pdf-timeline-body" style="font-size: 10.5px; color: #334155;">
+                                **Grade:** CGPA 8.19 / 10.00 — **First Class with Distinction** (Completed April 2026). Strong grounding in core data structures, relational database management, and object-oriented programming (C++, Java, PHP, JavaScript).
+                            </div>
+                        </div>
+
+                        <!-- HSC -->
+                        <div class="pdf-timeline-item" style="margin-bottom: 8px;">
+                            <div class="pdf-timeline-header">
+                                <span style="font-size: 11px; font-weight: 700;">Higher Secondary Certificate (HSC - 12th)</span>
+                                <span style="font-size: 9.5px; font-family: 'Fira Code', monospace; color: #4f46e5;">Completed</span>
+                            </div>
+                            <div class="pdf-timeline-meta" style="margin-bottom: 2px;">
+                                <span style="font-size: 9.5px; color: #475569;">GSEB (Gujarat Secondary & Higher Secondary Board)</span>
+                                <span style="font-size: 9.5px; color: #475569;">Science Stream</span>
+                            </div>
+                            <div class="pdf-timeline-body" style="font-size: 10px; color: #475569;">
+                                **Percentage:** 77.29%. Built a rigorous analytic background in mathematics, physics, and science logic.
+                            </div>
+                        </div>
+
+                        <!-- SSC -->
+                        <div class="pdf-timeline-item" style="margin-bottom: 0;">
+                            <div class="pdf-timeline-header">
+                                <span style="font-size: 11px; font-weight: 700;">Secondary School Certificate (SSC - 10th)</span>
+                                <span style="font-size: 9.5px; font-family: 'Fira Code', monospace; color: #4f46e5;">Completed</span>
+                            </div>
+                            <div class="pdf-timeline-meta" style="margin-bottom: 2px;">
+                                <span style="font-size: 9.5px; color: #475569;">GSEB (Gujarat Secondary & Higher Secondary Board)</span>
+                                <span style="font-size: 9.5px; color: #475569;">Gujarat Board</span>
+                            </div>
+                            <div class="pdf-timeline-body" style="font-size: 10px; color: #475569;">
+                                **Percentage:** 69.99%.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PDF Right Column -->
+                <div>
+                    <!-- Technical Toolkit -->
+                    <div class="pdf-section">
+                        <h2 class="pdf-section-title">
+                            Technical Skills
+                        </h2>
+
+                        <div class="pdf-skill-box" style="margin-bottom: 8px;">
+                            <div class="pdf-skill-category" style="font-size: 10px; font-weight: 700; color: #0f172a; text-transform: uppercase;">Languages</div>
+                            <div class="pdf-skill-tags" style="font-size: 10px; color: #475569; line-height: 1.3;">Python, Java, C++, C# / .NET, PHP, JavaScript, HTML5 & CSS3</div>
+                        </div>
+
+                        <div class="pdf-skill-box" style="margin-bottom: 8px;">
+                            <div class="pdf-skill-category" style="font-size: 10px; font-weight: 700; color: #0f172a; text-transform: uppercase;">Databases & DBMS</div>
+                            <div class="pdf-skill-tags" style="font-size: 10px; color: #475569; line-height: 1.3;">SQL & MySQL, MongoDB, Relational Database Management</div>
+                        </div>
+
+                        <div class="pdf-skill-box" style="margin-bottom: 8px;">
+                            <div class="pdf-skill-category" style="font-size: 10px; font-weight: 700; color: #0f172a; text-transform: uppercase;">Core CS Fundamentals</div>
+                            <div class="pdf-skill-tags" style="font-size: 10px; color: #475569; line-height: 1.3;">Data Structures, DBMS, Computer Networks, Software Engineering</div>
+                        </div>
+
+                        <div class="pdf-skill-box" style="margin-bottom: 8px;">
+                            <div class="pdf-skill-category" style="font-size: 10px; font-weight: 700; color: #0f172a; text-transform: uppercase;">AI & Automation</div>
+                            <div class="pdf-skill-tags" style="font-size: 10px; color: #475569; line-height: 1.3;">AI Automation, Prompt Engineering, API Integration, AI-Assisted Development</div>
+                        </div>
+                    </div>
+
+                    <!-- Target Roles -->
+                    <div class="pdf-section">
+                        <h2 class="pdf-section-title">
+                            Target Roles
+                        </h2>
+                        <div class="pdf-side-block" style="font-size: 9.5px; color: #475569; line-height: 1.35; padding-left: 2px;">
+                            • Software Developer<br>
+                            • Junior Python Developer<br>
+                            • Web Developer | AI Developer<br>
+                            • IT Support Engineer<br>
+                            • Technical Support Specialist<br>
+                            • Entry-Level Software Engineer<br>
+                            • Government Technical Outsourcing
+                        </div>
+                    </div>
+
+                    <!-- Competencies -->
+                    <div class="pdf-section" style="margin-bottom: 0;">
+                        <h2 class="pdf-section-title">
+                            Competencies
+                        </h2>
+                        <div class="pdf-side-block" style="font-size: 9.5px; color: #475569; line-height: 1.35; padding-left: 2px;">
+                            • AI-Assisted Development<br>
+                            • Full-Stack Web Development<br>
+                            • Database Design & Management<br>
+                            • Software Engineering Principles<br>
+                            • Problem Solving & Troubleshooting<br>
+                            • Technical Documentation<br>
+                            • Debugging & Software Testing<br>
+                            • Agile Learning Mindset
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page Break For Perfect 2-Page Layout -->
+            <div class="page-break"></div>
+
+            <!-- ==================== PDF PAGE 2 ==================== -->
+            <div class="pdf-header" style="margin-top: 30px;">
+                <div class="pdf-header-left">
+                    <h1>JAYDIPSINH GOHIL</h1>
+                    <p>Software Developer | AI & Web Technologies | IT Support</p>
+                </div>
+                <div class="pdf-header-right">
+                    <span style="font-weight: 700; color: #4f46e5; font-size: 11px;">Projects & Verification Portfolio</span>
+                </div>
+            </div>
+
+            <div class="pdf-section">
+                <h2 class="pdf-section-title">
+                    Key Projects & Systems Portfolio
+                </h2>
+
+                <!-- Project 1 -->
+                <div class="pdf-project-item" style="margin-bottom: 18px;">
+                    <div class="pdf-project-title" style="font-size: 12.5px; font-weight: 700; color: #0f172a; display: flex; justify-content: space-between;">
+                        <span>1. AI Resume Builder Automation</span>
+                        <span class="pdf-project-link" style="font-size: 10px; font-family: 'Fira Code', monospace; color: #4f46e5;">Python · AI Automation</span>
+                    </div>
+                    <div class="pdf-project-meta" style="font-size: 10px; color: #64748b; font-weight: 600; margin-bottom: 4px;">
+                        Tech Stack: Python, Prompt Engineering, Intelligent Content Processing, Workflows
+                    </div>
+                    <div class="pdf-project-desc" style="font-size: 11px; color: #475569; margin-bottom: 6px; text-align: justify;">
+                        Engineered an AI-powered resume generation platform leveraging Python automation and intelligent content processing pipelines. The system dynamically collects structured user data and produces ATS-optimised, professionally formatted resumes through automated workflow orchestration.
+                    </div>
+                    <ul class="pdf-timeline-bullets" style="font-size: 10.5px; color: #475569; padding-left: 14px; line-height: 1.35;">
+                        <li>Designed and implemented an end-to-end automated resume generation workflow, eliminating manual formatting effort.</li>
+                        <li>Integrated AI-based professional content enhancement for dynamic, role-specific language optimisation.</li>
+                        <li>Developed robust data processing modules for intelligent user input validation and structured output generation.</li>
+                        <li>Engineered ATS-friendly content formatting logic ensuring maximum keyword compatibility with applicant tracking systems.</li>
+                        <li>Applied prompt engineering techniques to produce contextually accurate, professionally styled resume content.</li>
+                    </ul>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="pdf-project-item" style="margin-bottom: 18px;">
+                    <div class="pdf-project-title" style="font-size: 12.5px; font-weight: 700; color: #0f172a; display: flex; justify-content: space-between;">
+                        <span>2. Car Hub Management System</span>
+                        <span class="pdf-project-link" style="font-size: 10px; font-family: 'Fira Code', monospace; color: #4f46e5;">Java · MySQL · MVC</span>
+                    </div>
+                    <div class="pdf-project-meta" style="font-size: 10px; color: #64748b; font-weight: 600; margin-bottom: 4px;">
+                        Tech Stack: Java, MySQL, HTML5, CSS3, Relational Database Connectivity
+                    </div>
+                    <div class="pdf-project-desc" style="font-size: 11px; color: #475569; margin-bottom: 6px; text-align: justify;">
+                        Designed and developed a full-featured web-based vehicle management platform integrating a relational database backend with a responsive frontend interface, demonstrating end-to-end software development competency.
+                    </div>
+                    <ul class="pdf-timeline-bullets" style="font-size: 10.5px; color: #475569; padding-left: 14px; line-height: 1.35;">
+                        <li>Architected a responsive frontend UI using HTML5 and CSS3 ensuring seamless cross-device usability.</li>
+                        <li>Implemented complete CRUD operations for structured vehicle data management using MySQL.</li>
+                        <li>Established robust MySQL database connectivity with optimised query design for efficient data retrieval.</li>
+                        <li>Developed a structured Java backend adhering to MVC design principles for maintainability and scalability.</li>
+                        <li>Applied core Data Structures and DBMS concepts to optimise application performance and data integrity.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Declaration Block -->
+            <div class="pdf-section" style="margin-top: 30px; page-break-inside: avoid; border-top: 1.5px solid #e2e8f0; padding-top: 12px;">
+                <h2 class="pdf-section-title" style="border-bottom: none; margin-bottom: 6px; font-size: 11.5px;">
+                    Declaration
+                </h2>
+                <p class="pdf-summary-text" style="font-size: 10.5px; color: #475569; font-style: italic; line-height: 1.35;">
+                    I hereby declare that all the information furnished above is true and accurate to the best of my knowledge and belief.
+                </p>
+                
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 25px; font-size: 10.5px; color: #0f172a;">
+                    <div>
+                        <strong>Place:</strong> Vadu, Gujarat, India<br>
+                        <strong>Date:</strong> 26th May 2026
+                    </div>
+                    <div style="text-align: right; border-top: 1px solid #94a3b8; padding-top: 4px; width: 180px;">
+                        <strong>Jaydipsinh Gohil</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PDF Footer -->
+            <div class="pdf-section"
+                style="margin-top: 50px; text-align: center; font-size: 9px; color: #94a3b8; border-top: 1.5px solid #f1f5f9; padding-top: 12px; page-break-inside: avoid;">
+                <div>Online Portfolio & Contact: <span style="color: #4f46e5; font-weight: 600;">gohiljaydipsinh108@gmail.com</span></div>
+                <div style="margin-top: 2px;">This document was programmatically generated. Last Updated: May 2026.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================================
+       14. JAVASCRIPT LOGIC
+       ====================================================================== -->
+    <script>
+        // Initialize Lucide Icons
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            initAnimations();
+        });
+
+        // ======================================================================
+        // A. LIGHT / DARK THEME SYSTEM
+        // ======================================================================
+        const themeToggleBtn = document.getElementById('theme-toggle');
+
+        // Check for cached theme or system preferences
+        const getPreferredTheme = () => {
+            const cachedTheme = localStorage.getItem('theme');
+            if (cachedTheme) return cachedTheme;
+            return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        };
+
+        const applyTheme = (theme) => {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        };
+
+        // Initialize theme
+        let currentTheme = getPreferredTheme();
+        applyTheme(currentTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(currentTheme);
+        });
+
+        // ======================================================================
+        // B. MOBILE MENU TOGGLE
+        // ======================================================================
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navLinksList = document.getElementById('nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinksList.classList.toggle('mobile-open');
+        });
+
+        // Close mobile menu on clicking any link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinksList.classList.remove('mobile-open');
+            });
+        });
+
+        // ======================================================================
+        // C. SCROLL SPY & SCROLL EFFECT FOR NAVBAR
+        // ======================================================================
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const navbar = document.getElementById('navbar');
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            // Navbar glass hide/show on scroll
+            if (window.scrollY > lastScrollY && window.scrollY > 150) {
+                // Scroll Down
+                navbar.style.top = '-5rem';
+            } else {
+                // Scroll Up
+                navbar.style.top = '1.25rem';
+            }
+            lastScrollY = window.scrollY;
+
+            // Scroll Spy
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - 250)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // ======================================================================
+        // D. ENTRY ANIMATIONS USING INTERSECTION OBSERVER
+        // ======================================================================
+        function initAnimations() {
+            const observerOptions = {
+                root: null,
+                threshold: 0.1,
+                rootMargin: '0px'
+            };
+
+            const animObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Optional: stop observing once activated
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Select animatable elements
+            const animElements = [
+                document.getElementById('hero-content'),
+                document.getElementById('hero-visual'),
+                document.getElementById('about-content'),
+                document.getElementById('about-pillars'),
+                ...document.querySelectorAll('.section-header'),
+                ...document.querySelectorAll('.skills-card'),
+                ...document.querySelectorAll('.project-card'),
+                ...document.querySelectorAll('.timeline-item'),
+                ...document.querySelectorAll('.add-card')
+            ];
+
+            animElements.forEach(el => {
+                if (el) animObserver.observe(el);
+            });
+        }
+
+        // ======================================================================
+        // E. COPY-TO-CLIPBOARD SYSTEM
+        // ======================================================================
+        function copyText(text, successMsg) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast(successMsg);
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+            });
+        }
+
+        // ======================================================================
+        // F. TOAST NOTIFICATION SYSTEM
+        // ======================================================================
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            toastMsg.innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // ======================================================================
+        // G. DYNAMIC DUAL-LAYOUT PDF RESUME DOWNLOADER (html2pdf.js)
+        // ======================================================================
+        function generatePDF() {
+            const element = document.getElementById('resume-pdf-template');
+
+            // Temporary reveal element in the DOM for canvas capturing
+            element.parentElement.style.display = 'block';
+
+            // Detect if user is on mobile/tablet
+            const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            // html2pdf setup options (Perfect 2-page A4 setup)
+            const opt = {
+                margin: [0, 0, 0, 0],
+                filename: 'Jaydipsinh_Gohil_Resume.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: {
+                    scale: 2,
+                    useCORS: true,
+                    letterRendering: true,
+                    backgroundColor: '#ffffff'
+                },
+                jsPDF: { unit: 'px', hotfixes: ['px_scaling'], format: [800, 1120], orientation: 'portrait' }
+            };
+
+            // Apply strict desktop-simulation options only on mobile to prevent scaling/spacing glitches
+            if (isMobile) {
+                opt.html2canvas.width = 800;
+                opt.html2canvas.windowWidth = 800;
+                opt.html2canvas.scrollX = 0;
+                opt.html2canvas.scrollY = 0;
+            }
+
+            // Generate and download
+            html2pdf().set(opt).from(element).save().then(() => {
+                // Re-hide container after creation completes
+                element.parentElement.style.display = 'none';
+                showToast('A4 Resume PDF downloaded successfully!');
+            }).catch(err => {
+                console.error('PDF Generation Error:', err);
+                element.parentElement.style.display = 'none';
+                showToast('Failed to generate PDF. Please try again.');
+            });
+        }
+
+        // Bind events
+        document.getElementById('download-pdf-btn').addEventListener('click', generatePDF);
+        document.getElementById('nav-pdf-btn').addEventListener('click', generatePDF);
+    </script>
+</body>
+
+</html>
